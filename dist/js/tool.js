@@ -672,9 +672,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['resourceName']
+  props: ['resourceName'],
+
+  data: function data() {
+    return {
+      customComponents: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    Nova.request().get("/nova-vendor/nova-dynamic-views/" + this.resourceName).then(function (res) {
+      _this.customComponents = res.data && res.data.header;
+    });
+  }
 });
 
 /***/ }),
@@ -685,7 +702,22 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    _vm._l(_vm.customComponents, function(comp) {
+      return _c(
+        "div",
+        [
+          _c(comp, {
+            tag: "component",
+            attrs: { "resource-name": _vm.resourceName }
+          })
+        ],
+        1
+      )
+    }),
+    0
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

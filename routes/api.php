@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/endpoint', function (Request $request) {
-//     //
-// });
+ Route::get('{resource}', function (\Laravel\Nova\Http\Requests\ResourceDetailRequest $request) {
+     $resourceClass = $request->resource();
+     $model = $request->model();
+     $resource = new $resourceClass($model);
+     
+     if(method_exists($resource, 'customIndexComponents')) {
+        return $resource->customIndexComponents();
+     }
+     
+     return [];
+ });
