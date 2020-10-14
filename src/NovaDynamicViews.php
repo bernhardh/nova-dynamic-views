@@ -15,16 +15,5 @@ class NovaDynamicViews extends Tool
     public function boot()
     {
         Nova::script('nova-dynamic-views', __DIR__.'/../dist/js/tool.js');
-        Nova::style('nova-dynamic-views', __DIR__.'/../dist/css/tool.css');
-    }
-
-    /**
-     * Build the view that renders the navigation links for the tool.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function renderNavigation()
-    {
-        return view('nova-dynamic-views::navigation');
     }
 }
