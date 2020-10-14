@@ -1,12 +1,40 @@
-Nova.booting((Vue, router, store) => {
-  Vue.component('custom-attach-header', require('./components/CustomAttachHeader'))
-  Vue.component('custom-create-header', require('./components/CustomCreateHeader'))
-  Vue.component('custom-dashboard-header', require('./components/CustomDashboardHeader'))
-  Vue.component('custom-detail-header', require('./components/CustomDetailHeader'))
-  Vue.component('custom-detail-toolbar', require('./components/CustomDetailToolbar'))
-  Vue.component('custom-index-header', require('./components/CustomIndexHeader'))
-  Vue.component('custom-index-toolbar', require('./components/CustomIndexToolbar'))
-  Vue.component('custom-lens-header', require('./components/CustomLensHeader'))
-  Vue.component('custom-update-attach-header', require('./components/CustomUpdateAttachedHeader'))
-  Vue.component('custom-update-header', require('./components/CustomUpdateHeader'))
+Nova.booting((Vue) => {
+    const components = [
+        'attach-header',
+        'create-header',
+        'dashboard-header',
+        'detail-header',
+        'detail-toolbar',
+        'index-header',
+        'index-toolbar',
+        'lens-header',
+        'update-attach-header',
+        'update-header'
+    ];
+
+    components.forEach((comp) => {
+        Vue.component('custom-' + comp, {
+            props: ['resourceName'],
+
+            template: '<div :class="compClass"><span v-for="(comp, index) in customComponents" :key="index">' +
+              '<component :is="comp.name" v-bind="$props" v-bind="comp.meta"></component>' +
+              '</span></div>',
+
+            data() {
+                return {
+                    customComponents: [],
+                    compClass: '',
+                    compName: comp
+                }
+            },
+
+            mounted() {
+                Nova.request().get('/nova-vendor/nova-dynamic-views/' + this.resourceName + '/' + this.compName)
+                    .then(res => {
+                        this.customComponents = res.data.items
+                        this.compClass = res.data.class
+                    })
+            }
+        })
+    })
 })

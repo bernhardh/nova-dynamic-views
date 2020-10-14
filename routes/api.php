@@ -14,16 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
- Route::get('{resource}/{viewName}/{area}', function (\Laravel\Nova\Http\Requests\ResourceDetailRequest $request, $resource, $viewName, $area) {
+ Route::get('{resource}/{method}', function (\Laravel\Nova\Http\Requests\ResourceDetailRequest $request, $resource, $method) {
      $resourceClass = $request->resource();
      $model = $request->model();
-     $method = 'custom' . ucfirst($viewName) . 'Components';
+     $method = \Illuminate\Support\Str::camel('custom-' . $method . '-components');
      $resource = new $resourceClass($model);
      
      if(method_exists($resource, $method)) {
         $data = $resource->$method();
-        if($data && is_array($data[$area])) {
-            return $data[$area];
+        if($data && is_array($data)) {
+            return $data;
         }
      }
      
