@@ -2,6 +2,8 @@
 
 This package is ment to be used **INSTEAD** of overwriting the `custom-index-header`, `custom-index-toolbar`, `custom-detail-header`, `custom-detail-toolbar`, etc. by yourself. It provides a much easier api for it and it allows you to use these "place-holder" components multiple times without overwriting each other.
 
+![2020-10-14_16-13](https://user-images.githubusercontent.com/642292/96001510-6592a980-0e38-11eb-9aea-54ebbf6126d1.png)
+
 ## Usage
 
 Let's say you want to add a custom button to the `toolbar` of all `index` views. Just create a vue component for it, as you would do if you use the `custom-index-header` (see section "Create custom component" if you don't know how to). Let's call it `my-index-toolbar-btn` Now the only thing you have to do is register it to your `\App\Ņova\Resource` class, within a new method called `customIndexToolbarComponents`:
@@ -134,9 +136,9 @@ This is just a kick start documentation for this. For more infos see https://nov
 Create a new resource tool with artisan:
 
 ```bash
-php artisan nova:resource-tool acme/custom-resource-toolbar
+php artisan nova:resource-tool acme/my-index-toolbar-btn
 ```
 
-and say yes to all questions of the prompt.
+and say yes to all questions of the prompt. Now you can use this component (located ad `nova-components/my-index-toolbar-btn`) inside your `customXXXComponents` (f.e. `customIndexToolbarComponents`)
 
 
