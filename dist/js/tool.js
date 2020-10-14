@@ -195,14 +195,6 @@ Nova.booting(function (Vue, router, store) {
   Vue.component('custom-lens-header', __webpack_require__(24));
   Vue.component('custom-update-attach-header', __webpack_require__(27));
   Vue.component('custom-update-header', __webpack_require__(30));
-
-  // router.addRoutes([
-  //   {
-  //     name: 'nova-dynamic-views',
-  //     path: '/nova-dynamic-views',
-  //     component: require('./components/Tool'),
-  //   },
-  // ])
 });
 
 /***/ }),
@@ -624,7 +616,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(19)
 /* template */
-var __vue_template__ = __webpack_require__(20)
+var __vue_template__ = null
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -668,68 +660,23 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins__ = __webpack_require__(38);
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['resourceName'],
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins__["a" /* default */]],
 
   data: function data() {
     return {
-      customComponents: []
+      viewName: 'index',
+      area: 'header'
     };
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    Nova.request().get("/nova-vendor/nova-dynamic-views/" + this.resourceName).then(function (res) {
-      _this.customComponents = res.data && res.data.header;
-    });
   }
 });
 
 /***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    _vm._l(_vm.customComponents, function(comp) {
-      return _c(
-        "div",
-        [
-          _c(comp, {
-            tag: "component",
-            attrs: { "resource-name": _vm.resourceName }
-          })
-        ],
-        1
-      )
-    }),
-    0
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-99ddf81a", module.exports)
-  }
-}
-
-/***/ }),
+/* 20 */,
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -738,7 +685,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(22)
 /* template */
-var __vue_template__ = __webpack_require__(23)
+var __vue_template__ = null
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -782,36 +729,23 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins__ = __webpack_require__(38);
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['resourceName']
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins__["a" /* default */]],
+
+  data: function data() {
+    return {
+      viewName: 'index',
+      area: 'toolbar'
+    };
+  }
 });
 
 /***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex w-full justify-end items-center mx-3" })
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-515395f6", module.exports)
-  }
-}
-
-/***/ }),
+/* 23 */,
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1062,6 +996,34 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    props: ['resourceName'],
+
+    template: '<div>\n    <div v-for="(value, name) in customComponents">\n      <component :is="name" v-bind="$props" v-bind="value"></component>\n    </div>\n  </div>',
+
+    data: function data() {
+        return {
+            customComponents: []
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        Nova.request().get('/nova-vendor/nova-dynamic-views/' + this.resourceName + '/' + this.viewName + '/' + this.area).then(function (res) {
+            _this.customComponents = res.data;
+        });
+    }
+});
 
 /***/ })
 /******/ ]);

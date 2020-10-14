@@ -14,13 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
- Route::get('{resource}', function (\Laravel\Nova\Http\Requests\ResourceDetailRequest $request) {
+ Route::get('{resource}/{viewName}/{area}', function (\Laravel\Nova\Http\Requests\ResourceDetailRequest $request, $resource, $viewName, $area) {
      $resourceClass = $request->resource();
      $model = $request->model();
+     $method = 'custom' . ucfirst($viewName) . 'Components';
      $resource = new $resourceClass($model);
      
-     if(method_exists($resource, 'customIndexComponents')) {
-        return $resource->customIndexComponents();
+     if(method_exists($resource, $method)) {
+        $data = $resource->$method();
+        if($data && is_array($data[$area])) {
+            return $data[$area];
+        }
      }
      
      return [];

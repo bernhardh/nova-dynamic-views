@@ -1,9 +1,14 @@
-<template>
-  <div class="flex w-full justify-end items-center mx-3" />
-</template>
-
 <script>
+import Mixins from '../mixins'
+
 export default {
-  props: ['resourceName'],
+  mixins: [Mixins],
+
+  data() {
+    return {
+      viewName: 'index',
+      area: 'toolbar'
+    }
+  }
 }
 </script>

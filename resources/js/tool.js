@@ -9,12 +9,4 @@ Nova.booting((Vue, router, store) => {
   Vue.component('custom-lens-header', require('./components/CustomLensHeader'))
   Vue.component('custom-update-attach-header', require('./components/CustomUpdateAttachedHeader'))
   Vue.component('custom-update-header', require('./components/CustomUpdateHeader'))
-
-  // router.addRoutes([
-  //   {
-  //     name: 'nova-dynamic-views',
-  //     path: '/nova-dynamic-views',
-  //     component: require('./components/Tool'),
-  //   },
-  // ])
 })
