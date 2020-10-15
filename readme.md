@@ -28,7 +28,7 @@ Thats it. Now you should see the content of your component in the toolbar.
 
 ### Provide extra data
 
-If you want to add extra data (for example a label) to your component (without extra request), just add it to the returned array in the `meta` key:
+If you want to add extra data (for example a label) to your component (without extra request), just add it to the `addItem` method as second parameter (as array):
 
 ```php
 public function customIndexToolbarComponents()
