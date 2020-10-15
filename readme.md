@@ -6,18 +6,13 @@ This package is ment to be used **INSTEAD** of overwriting the `custom-index-hea
 
 ## Usage
 
-Let's say you want to add a custom button to the `toolbar` of all `index` views. Just create a vue component for it, as you would do if you use the `custom-index-header` (see section "Create custom component" if you don't know how to). Let's call it `my-index-toolbar-btn` Now the only thing you have to do is register it to your `\App\Ņova\Resource` class, within a new method called `customIndexToolbarComponents`:
+Let's say you want to add a custom button to the `toolbar` of all `index` views. Just create a vue component for it, as you would do if you use the `custom-index-header` (see section "Create custom component" if you don't know how to). Let's call it `my-index-toolbar-btn`. Now the only thing you have to do is register it to your `\App\Ņova\Resource` class, within a new method called `customIndexToolbarComponents`, which returns a `\Bernhardh\NovaDynamicViews\CustomComponents` object:
 
 ```php
 public function customIndexToolbarComponents()
 {
-    return [
-        'items' => [
-            [
-                'name' => 'my-index-toolbar-btn',
-            ],
-        ]
-    ];
+    return CustomComponents::make()
+       ->addItem('my-index-toolbar-btn');
 }
 ```
 
@@ -30,32 +25,22 @@ If you want to add extra data (for example a label) to your component (without e
 ```php
 public function customIndexToolbarComponents()
 {
-    return [
-        'items' => [
-            [
-                'name' => 'my-index-toolbar-btn',
-                'meta' => [
-                    'label' => 'My label'
-                ]
-            ],
-        ]
-    ];
+    return CustomComponents::make()
+       ->addItem('my-index-toolbar-btn', [
+           'label' => 'My label'
+       ]); 
 }
 ```
 
 ### Add (tailwind) class to the container
 
-If you want to add additional css classes to the container div of a section (for example add `flex w-full justify-end items-center mx-3` to the `customIndexToolbarComponents` section), add the `class` key:
+If you want to add additional css classes to the container div of a section (for example add `flex w-full justify-end items-center mx-3` to the `customIndexToolbarComponents` section), add the `class` in the `make` function (or use the `setClass` method):
 
 ```php
 public function customIndexToolbarComponents()
 {
-    return [
-        'class' => 'flex w-full justify-end items-center mx-3',
-        'items' => [
-            ...
-        ]
-    ];
+    return CustomComponents::make('flex w-full justify-end items-center mx-3')
+       ->addItem('my-index-toolbar-btn'); 
 }
 ```
 
@@ -72,23 +57,13 @@ class Resource extends \Laravel\Nova\Resource {
      */
     public function customIndexToolbarComponents()
     {
-        return [
-            'class' => 'flex w-full justify-end items-center mx-3',
-            'items' => [
-                [
-                    'name' => 'my-index-toolbar-btn',
-                    'meta' => [
-                        'label' => 'My first btn'
-                    ]
-                ],
-                [
-                    'name' => 'my-index-toolbar-btn',
-                    'meta' => [
-                        'label' => 'My second btn'
-                    ]
-                ],
-            ]
-        ];
+        return CustomComponents::make('flex w-full justify-end items-center mx-3')
+            ->addItem('my-index-toolbar-btn', [
+                'title' => 'My first btn'
+            ])
+            ->addItem('my-index-toolbar-btn', [
+                'title' => 'My second btn'
+            ]);
     }
 
     /**
@@ -98,13 +73,8 @@ class Resource extends \Laravel\Nova\Resource {
      */
     public function customDetailHeaderComponents()
     {
-        return [
-            'items' => [
-                [
-                    'name' => 'my-other-component'
-                ]
-            ]
-        ];
+        return CustomComponents::make()
+           ->addItem('my-other-component');
     }
 }
 ```

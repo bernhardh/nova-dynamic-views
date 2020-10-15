@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
      
      if(method_exists($resource, $method)) {
         $data = $resource->$method();
-        if($data && is_array($data)) {
+        if($data) {
             return $data;
         }
      }
