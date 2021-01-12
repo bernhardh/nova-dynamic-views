@@ -12,6 +12,20 @@ Just add it with composer
 composer require bernhardh/nova-dynamic-views
 ```
 
+and register the tool in the `tools` method in your `\App\Providers\NovaServiceProvider`:
+
+```php 
+use Bernhardh\NovaDynamicViews\NovaDynamicViews;
+
+...
+
+public function tools() {
+    return [
+        new NovaDynamicViews()
+    ];
+}
+```
+
 ## Usage
 
 Let's say you want to add a custom button to the `toolbar` of all `index` views. Just create a vue component for it, as you would do if you use the `custom-index-header` (see section "Create custom component" if you don't know how to). Let's call it `my-index-toolbar-btn`. Now the only thing you have to do is register it to your `\App\Ņova\Resource` class, within a new method called `customIndexToolbarComponents`, which returns a `\Bernhardh\NovaDynamicViews\CustomComponents` object:

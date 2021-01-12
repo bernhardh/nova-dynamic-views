@@ -17,7 +17,7 @@ Nova.booting((Vue) => {
             props: ['resourceName'],
 
             template: '<div :class="compClass"><span v-for="(comp, index) in customComponents" :key="index">' +
-              '<component :is="comp.name" v-bind="$props" v-bind="comp.meta"></component>' +
+              '<component :is="comp.name" v-bind="comp.meta"></component>' +
               '</span></div>',
 
             data() {
@@ -31,7 +31,16 @@ Nova.booting((Vue) => {
             mounted() {
                 Nova.request().get('/nova-vendor/nova-dynamic-views/' + this.resourceName + '/' + this.compName)
                     .then(res => {
-                        this.customComponents = res.data.items
+                        let items = res.data.items || []
+                        if(items) {
+                            for(let i in items) {
+                                for(let j in this.$props) {
+                                    if(!items[i].meta) items[i].meta = {}
+                                    items[i].meta[j] = this[j]
+                                }
+                            }
+                        }
+                        this.customComponents = items
                         this.compClass = res.data.class
                     })
             }
