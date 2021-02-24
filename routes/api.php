@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use \Bernhardh\NovaDynamicViews\Http\Controllers\NovaDynamicViewsController;
 /*
 |--------------------------------------------------------------------------
 | Tool API Routes
@@ -14,18 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
- Route::get('{resource}/{method}', function (\Laravel\Nova\Http\Requests\ResourceDetailRequest $request, $resource, $method) {
-     $resourceClass = $request->resource();
-     $model = $request->model();
-     $method = \Illuminate\Support\Str::camel('custom-' . $method . '-components');
-     $resource = new $resourceClass($model);
-     
-     if(method_exists($resource, $method)) {
-        $data = $resource->$method();
-        if($data) {
-            return $data;
-        }
-     }
-     
-     return [];
- });
+ Route::get('{resource}/{method}', [NovaDynamicViewsController::class, 'resourceRequestDetails']);
