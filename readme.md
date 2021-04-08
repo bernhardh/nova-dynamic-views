@@ -54,6 +54,19 @@ public function customIndexToolbarComponents()
 }
 ```
 
+### Access resource data
+
+You have access to the ressource class in all methods by using `$this`. On `detail` and `edit` components, you have access to the ID of the current model with `request('id')`. So if you need the model itself in your `customDetailhHeaderComponents`, `customDetailToolbarComponents` or your `customUpdateHeaderComponents`, you can query for it like so:
+
+```php
+public function customDetailToolbarComponents() 
+{
+    $model = $this->model()->query()->where('id', request('id'))->first();
+
+    //...
+}
+```
+
 ### Add (tailwind) class to the container
 
 If you want to add additional css classes to the container div of a section (for example add `flex w-full justify-end items-center mx-3` to the `customIndexToolbarComponents` section), add the `class` in the `make` function (or use the `setClass` method):
@@ -95,8 +108,13 @@ class Resource extends \Laravel\Nova\Resource {
      */
     public function customDetailHeaderComponents()
     {
+        $model = $this->model()->query()->where('id', request('id'))->first();
+        
         return CustomComponents::make()
-           ->addItem('my-other-component');
+           ->addItem('my-other-component', [
+                'id' => $model->id,
+                'name' => $model->name    
+           ]);
     }
 }
 ```
