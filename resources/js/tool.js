@@ -29,7 +29,12 @@ Nova.booting((Vue) => {
             },
 
             mounted() {
-                Nova.request().get('/nova-vendor/nova-dynamic-views/' + this.resourceName + '/' + this.compName)
+                let url = '/nova-vendor/nova-dynamic-views/' + this.resourceName + '/' + this.compName;
+                if(this.$route.params && this.$route.params.resourceId) {
+                    url+= '?id=' + this.$route.params.resourceId
+                }
+
+                Nova.request().get(url)
                     .then(res => {
                         let items = res.data.items || []
                         if(items) {
