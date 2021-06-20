@@ -2,7 +2,6 @@ Nova.booting((Vue) => {
     const components = [
         'attach-header',
         'create-header',
-        'dashboard-header',
         'detail-header',
         'detail-toolbar',
         'index-header',

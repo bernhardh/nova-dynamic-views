@@ -1,6 +1,6 @@
 # Nova dynamic views
 
-This package is ment to be used **INSTEAD** of overwriting the `custom-index-header`, `custom-index-toolbar`, `custom-detail-header`, `custom-detail-toolbar`, etc. by yourself. It provides a much easier api for it and it allows you to use these "place-holder" components multiple times without overwriting each other.
+This package is ment to be used **INSTEAD** of overwriting the `custom-index-header`, `custom-index-toolbar`, `custom-detail-header`, `custom-detail-toolbar`, etc. by yourself. It provides a much easier api for it and it allows you to use these "placeholder" components multiple times without overwriting each other.
 
 ![2020-10-14_16-13](https://user-images.githubusercontent.com/642292/96001510-6592a980-0e38-11eb-9aea-54ebbf6126d1.png)
 
@@ -126,11 +126,10 @@ If you wanna show this button only on a specific resource, for example only for 
 
 ## Available methods and areas
 
-All `custom-*-*` nova placeholders are available as camel case methods postfixed with `Components`:
+All `custom-*-*` nova placeholders (except `custom-dashboard-header`) are available as camel case methods postfixed with `Components`:
 
 - `customAttachHeaderComponents`
 - `customCreateHeaderComponents`
-- `customDashboardHeaderComponents`
 - `customDetailhHeaderComponents`
 - `customDetailToolbarComponents`
 - `customIndexHeaderComponents`
