@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \Bernhardh\NovaDynamicViews\Http\Controllers\NovaDynamicViewsController;
+use Bernhardh\NovaDynamicViews\Http\Controllers\NovaDynamicViewsController;
 /*
 |--------------------------------------------------------------------------
 | Tool API Routes
