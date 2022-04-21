@@ -29,8 +29,10 @@ Nova.booting((Vue) => {
 
             mounted() {
                 let url = '/nova-vendor/nova-dynamic-views/' + this.resourceName + '/' + this.compName;
-                if(this.$route.params && this.$route.params.resourceId) {
-                    url+= '?id=' + this.$route.params.resourceId
+                if(this.$route.params) {
+                    const queryObject = {...this.$route.params, ...this.$route.query};
+                    if (queryObject.resourceId) queryObject.id = queryObject.resourceId; // backwards compatibility, should ideally use resourceId to keep things consistent 
+                    url += `?` + new URLSearchParams(queryObject).toString();
                 }
 
                 Nova.request().get(url)
