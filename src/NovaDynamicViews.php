@@ -4,6 +4,7 @@ namespace Bernhardh\NovaDynamicViews;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
+use Illuminate\Http\Request;
 
 class NovaDynamicViews extends Tool
 {
