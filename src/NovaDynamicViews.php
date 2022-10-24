@@ -17,9 +17,4 @@ class NovaDynamicViews extends Tool
     {
         Nova::script('nova-dynamic-views', __DIR__.'/../dist/js/tool.js');
     }
-
-    public function menu(Request $request)
-    {
-        // TODO: Implement menu() method.
-    }
 }
