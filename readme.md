@@ -1,3 +1,5 @@
+# Warning: No nova 4 support
+
 # Nova dynamic views
 
 This package is ment to be used **INSTEAD** of overwriting the `custom-index-header`, `custom-index-toolbar`, `custom-detail-header`, `custom-detail-toolbar`, etc. by yourself. It provides a much easier api for it and it allows you to use these "placeholder" components multiple times without overwriting each other.
