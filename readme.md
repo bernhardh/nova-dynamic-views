@@ -2,19 +2,19 @@
 
 # Nova dynamic views
 
-This package is ment to be used **INSTEAD** of overwriting the `custom-index-header`, `custom-index-toolbar`, `custom-detail-header`, `custom-detail-toolbar`, etc. by yourself. It provides a much easier api for it and it allows you to use these "placeholder" components multiple times without overwriting each other.
+This package is meant to be used **INSTEAD** of overwriting the `custom-index-header`, `custom-index-toolbar`, `custom-detail-header`, `custom-detail-toolbar`, etc. by yourself. It provides a much easier API for it and it allows you to use these "placeholder" components multiple times without overwriting each other.
 
 ![2020-10-14_16-13](https://user-images.githubusercontent.com/642292/96001510-6592a980-0e38-11eb-9aea-54ebbf6126d1.png)
 
 ## Installation
 
-Just add it with composer
+Require the package with composer
 
 ```
 composer require bernhardh/nova-dynamic-views
 ```
 
-and register the tool in the `tools` method in your `\App\Providers\NovaServiceProvider`:
+Register the tool in the `tools` method in your `\App\Providers\NovaServiceProvider`:
 
 ```php 
 use Bernhardh\NovaDynamicViews\NovaDynamicViews;
@@ -71,7 +71,7 @@ public function customDetailToolbarComponents()
 
 ### Add (tailwind) class to the container
 
-If you want to add additional css classes to the container div of a section (for example add `flex w-full justify-end items-center mx-3` to the `customIndexToolbarComponents` section), add the `class` in the `make` function (or use the `setClass` method):
+If you want to add additional CSS classes to the container div of a section (for example add `flex w-full justify-end items-center mx-3` to the `customIndexToolbarComponents` section), add the `class` in the `make` function (or use the `setClass` method):
 
 ```php
 public function customIndexToolbarComponents()
@@ -124,7 +124,7 @@ class Resource extends \Laravel\Nova\Resource {
 
 ### Use only on specific resources
 
-If you wanna show this button only on a specific resource, for example only for Users, just add this method to the `\App\Nova\User` class. 
+If you want to show this button only on a specific resource, for example only for Users, just add this method to the `\App\Nova\User` class. 
 
 ## Available methods and areas
 
@@ -142,7 +142,7 @@ All `custom-*-*` nova placeholders (except `custom-dashboard-header`) are availa
 
 ## Create custom component
 
-This is just a kick start documentation for this. For more infos see https://nova.laravel.com/docs/3.0/customization/resource-tools.html
+This is just a kick start documentation for this. For more info, see https://nova.laravel.com/docs/3.0/customization/resource-tools.html
 
 Create a new resource tool with artisan:
 
