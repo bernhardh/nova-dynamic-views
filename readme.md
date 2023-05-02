@@ -1,4 +1,10 @@
-# Warning: No nova 4 support
+# Warning!!!!
+
+This repository is archived and no longer supported. It doesn't work with Nova 4. Just have a look at the form from https://github.com/shuvroroy/nova-dynamic-views
+
+
+---
+
 
 # Nova dynamic views
 
